@@ -1,0 +1,17 @@
+
+version: '3.8'
+services:
+ db:
+  image: mysql:8
+  environment:
+   MYSQL_ROOT_PASSWORD: root
+   MYSQL_DATABASE: ems
+ rabbitmq:
+  image: rabbitmq:3-management
+ app:
+  build: .
+  ports:
+   - "8080:8080"
+  depends_on:
+   - db
+   - rabbitmq
